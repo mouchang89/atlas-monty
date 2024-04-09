@@ -55,6 +55,7 @@ char *get_next_word(char *str, char *delims);
 int is_delim(char ch, char *delims);
 int get_word_length(char *str, char *delims);
 int get_word_count(char *str, char *delims);
+int check_mode(stack_t *stack);
 int usage_error(void);
 int malloc_error(void);
 int f_open_error(char *filename);
