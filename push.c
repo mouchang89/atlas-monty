@@ -2,60 +2,34 @@
 
 /**
  * push - pushes an element to the stack
- * @stack: double pointer to stack
+ * @stack: pointer to top of stack
  * @line_number: current working line number
+ * @arg: arguments
  *
  * Return: 0
  */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number, *arg)
 {
-    	stack_t *tmp, *new;
-	int i;
+    	stack_t *tmp = NULL;
 
-	new = malloc(sizeof(stack_t));
-	if (new == NULL)
+	if (stack == NULL)
 	{
-		set_op_tok_error(malloc_error());
-		return;
+		fprintf(stderr, "L%d: Error stack not found\n", line_number);
+		exit(EXIT_FAILURE);
 	}
-	if (op_toks[1] == NULL)
+	tmp = malloc(sizeof(stack_t));
+	if (tmp == NULL)
 	{
-		set_op_tok_error(no_int_error(line_number));
-		return;
+		fprintf(stderr, "Error: malloc failed\n");
+		free_stack(stack);
+		exit(EXIT_FAILURE);
 	}
-	for (i = 0; op_toks[1][i]; i++)
+	tmp->n = atoi(arg);
+	tmp->prev = NULL;
+	tmp->next = *stack;
+	if (*stack)
 	{
-		if (op_toks[1][i] == '-' && i == 0)
-		{
-			continue;
-		}
-		if (op_toks[1][i] < '0' || op_toks[1][i] > '9')
-		{
-			set_op_tok_error(no_int_error(line_number));
-			return;
-		}
+		(*stack)->prev = node;
 	}
-	new->n = atoi(op_toks[1]);
-	if (check_mode(*stack) == STACK)
-	{
-		tmp = (*stack)->next;
-		new->prev = *stack;
-		new->next = tmp;
-		if (tmp)
-		{
-			tmp->prev = new;
-			(*stack)->next = new;
-		}
-	}
-	else
-	{
-		tmp = *stack;
-		while (tmp->next)
-		{
-			tmp = tmp->next;
-		}
-		new->prev = tmp;
-		new->next = NULL;
-		tmp->next = new;
-	}
+	(*stack) = tmp;
 }
