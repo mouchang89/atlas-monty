@@ -23,11 +23,11 @@ void push(stack_t **stack, unsigned int line_number)
 		set_op_tok_error(no_int_error(line_number));
 		return;
 	}
-	for (i = 0; op_tok[1][i]; i++)
+	for (i = 0; op_toks[1][i]; i++)
 	{
 		if (op_toks[1][i] == '-' && i == 0)
 		{
-			continure;
+			continue;
 		}
 		if (op_toks[1][i] < '0' || op_toks[1][i] > '9')
 		{
