@@ -2,17 +2,17 @@
 
 /**
  * pint - prints the value at the top of the stack followed by new line
- * @head: double pointer to stack
- * @ln: line number
+ * @stack: pointer to top of stack
+ * @line_number: current working line number
  *
  * Return: 0
  */
-void pint(stack_t **stack, unsigned int ln)
+void pint(stack_t **stack, unsigned int line_number)
 {
-    	if (!*stack)
+    	if ((*stack)->next == NULL)
     	{
-            	fprintf(stderr, "L%d: can't pint, stack empty\n", ln);
-            	exit(EXIT_FAILURE);
-    	}
-    	printf("%d\n", *stack->n);
+		set_op_tok_error(pint_error(line_number));
+		return;
+	}
+	printf("%d\n, (*stack)->next->n);
 }
