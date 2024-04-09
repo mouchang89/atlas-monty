@@ -37,3 +37,23 @@ int short_stack_error(unsigned int line_number, char *op)
     fprintf(stderr, "L%u: can't %s, stack too short\n", line_number, op);
     return (EXIT_FAILURE);
 }
+
+/**check_mode - checks if list is in stack or queue
+ * @stack: pointer to top or bottom of list
+ *
+ * Return: if list is in stack mode - STACK (0)
+ * if list is in queue mode - QUEUE (1)
+ * otherwise 2
+ */
+int check_mode(stack_t *stack)
+{
+	if (stack->n == STACK)
+	{
+		return (STACK);
+	}
+	else if (stack->n == QUEUE)
+	{
+		return (QUEUE);
+	}
+	return (2);
+}
