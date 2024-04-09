@@ -2,24 +2,19 @@
 
 /**
  * pall - prints all values on the stack starting from the top of the stack
- * @stack: double pointer to stack
- * @ln: line number
+ * @stack: pointer to top of stack
+ * @line_number: current working line number
  *
  * Return: 0
  */
-void pall(stack t **stack, unsigned int ln)
+void pall(stack_t **stack, unsigned int line_number)
 {
-    	stack_t *tmp;
+    	stack_t *tmp = (*stack)->next;
 
-	if (stack == NULL)
-    	{
-            	exit(EXIT_FAILURE);
-    	}
-    	tmp = *stack;
-    	while (tmp != NULL)
+	while (tmp)
     	{
             	printf("%d\n", tmp->n);
             	tmp = tmp->next;
     	}
-    	(void)ln;
+    	(void)line_number;
 }
