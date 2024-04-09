@@ -14,5 +14,5 @@ void pint(stack_t **stack, unsigned int line_number)
 		set_op_tok_error(pint_error(line_number));
 		return;
 	}
-	printf("%d\n, (*stack)->next->n);
+	printf("%d\n", (*stack)->next->n);
 }
