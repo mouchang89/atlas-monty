@@ -7,7 +7,7 @@
  *
  * Return: 0
  */
-void swap(stack_t **stack, unsigned int ln)
+void swap(stack_t **stack, unsigned int line_number)
 {
     	stack_t *tmp;
 
